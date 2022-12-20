@@ -15,6 +15,7 @@ android {
         targetSdk 32
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "BASE_URL_IMAGE", '"https://image.tmdb.org/t/p/"')
         consumerProguardFiles "consumer-rules.pro"
     }
 
@@ -36,5 +37,6 @@ android {
 dependencies {
 
     implementation project(":data")
+    implementation project(":common")
 
 }

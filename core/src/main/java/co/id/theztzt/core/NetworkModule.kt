@@ -17,7 +17,7 @@ val networkModule = module {
         val retrofit = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .client(get())
-            .baseUrl(BuildConfig.BASE_URL)
+            .baseUrl(co.id.theztzt.data.BuildConfig.BASE_URL)
             .build()
         retrofit.create(MovieApiClient::class.java)
     }

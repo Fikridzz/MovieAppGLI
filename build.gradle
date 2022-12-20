@@ -21,7 +21,7 @@ ext {
 
     materialVersion = '1.7.0'
 
-    pagingVersion = '3.0.0'
+    pagingVersion = '3.1.1'
 
     couroutineVersion = '1.6.0'
 
