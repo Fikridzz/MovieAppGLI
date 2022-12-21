@@ -80,7 +80,7 @@ data class DetailResponse(
     val status: String?,
 
     @field:SerializedName("credits")
-    val credits: Credits
+    val credits: Credits,
 )
 
 data class Credits(

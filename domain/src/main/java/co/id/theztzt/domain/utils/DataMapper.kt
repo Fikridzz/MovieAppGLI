@@ -2,9 +2,13 @@ package co.id.theztzt.domain.utils
 
 import co.id.theztzt.data.source.response.DetailResponse
 import co.id.theztzt.data.source.response.ResultsItem
+import co.id.theztzt.data.source.response.ResultsReview
+import co.id.theztzt.data.source.response.ResultsVideo
 import co.id.theztzt.domain.BuildConfig
 import co.id.theztzt.domain.model.Detail
 import co.id.theztzt.domain.model.Movie
+import co.id.theztzt.domain.model.Review
+import co.id.theztzt.domain.model.Video
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -35,7 +39,34 @@ object DataMapper {
             releaseDate = releaseDate?.convertDate() ?: "",
             posterPath = posterPath?.loadImage() ?: "",
             backdropPath = backdropPath?.loadImageOriginal() ?: "",
-//            isFavorite = true
+        )
+
+    fun ResultsVideo.mapToVideo(): Video =
+        Video(
+            id = this.id,
+            name = this.name,
+            key = this.key,
+            site = this.site,
+            type = this.type,
+            publishedAt = this.publishedAt
+        )
+
+    fun List<ResultsReview?>?.toListReview(): List<Review> {
+        val newData = mutableListOf<Review>()
+        this?.forEach {
+            newData.add(it?.mapToReview()!!)
+        }
+        return newData
+    }
+
+    fun ResultsReview.mapToReview(): Review =
+        Review(
+            id = this.id,
+            username = this.authorDetails?.username,
+            avatarPath = this.authorDetails?.avatarPath?.loadImage(),
+            content = this.content,
+            rating = this.authorDetails?.rating,
+            createdAt = this.createdAt ?: "-"
         )
 
     private fun Int.getGenre() =

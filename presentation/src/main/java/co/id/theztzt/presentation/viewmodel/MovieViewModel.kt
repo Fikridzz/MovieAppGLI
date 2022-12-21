@@ -3,6 +3,7 @@ package co.id.theztzt.presentation.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import co.id.theztzt.domain.model.Movie
 import co.id.theztzt.domain.usecase.MovieUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,6 +20,7 @@ class MovieViewModel(private val movieUseCase: MovieUseCase) : ViewModel() {
         viewModelScope.launch {
 
             movieUseCase.getMovies()
+                .cachedIn(this)
                 .collectLatest {
                     _movie.value = it
                 }

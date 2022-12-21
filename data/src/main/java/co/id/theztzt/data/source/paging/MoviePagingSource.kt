@@ -15,7 +15,7 @@ class MoviePagingSource(
         val position = params.key ?: 1
 
         return try {
-            val response = service.getMovies(BuildConfig.API_KEY, 1)
+            val response = service.getMovies(BuildConfig.API_KEY, position)
             val data = response.body()?.results
 
             LoadResult.Page(
